@@ -1,15 +1,53 @@
-# DevResume Automation Pipeline
+<div align="center">
 
-An event-driven architecture that keeps a Software Engineering resume
-continuously up to date with **zero manual backend coding** and **zero
-self-hosted infrastructure** — orchestrated entirely by GitHub Actions.
+<img src="resume-core/assets/logo-wordmark.png" alt="DevResume" width="360" />
 
-This is the main/parent project: it holds the architecture, implementation,
-and design documentation, plus two git submodules —
-[`resume-core`](https://github.com/ChamathDilshanC/resume-core) (the resume
-data, template, PDF generator, and workflows) and
-[`resume-admin`](https://github.com/ChamathDilshanC/resume-admin) (a private,
-single-user web editor for `resume.json`).
+### Event-driven Software Engineering resume pipeline — zero manual backend code, zero self-hosted infrastructure.
+
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-orchestration-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Puppeteer](https://img.shields.io/badge/Puppeteer-PDF_render-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-admin_dashboard-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![AI](https://img.shields.io/badge/AI-bullet_generation-8A2BE2?style=for-the-badge&logo=openai&logoColor=white)
+
+</div>
+
+---
+
+## What this is
+
+Push code to a tracked project repo, or submit a work-experience Issue Form
+— a resume PDF updates itself, automatically, within minutes. No backend
+server, no database, no self-hosted cron job. Every moving part is either a
+GitHub Actions workflow or a stateless Next.js app.
+
+This repository is the **parent project**: architecture/design docs, plus
+two git submodules that do the actual work.
+
+| Submodule | Role |
+|---|---|
+| [`resume-core`](https://github.com/ChamathDilshanC/resume-core) | Source of truth (`resume.json`), Handlebars/CSS template, Puppeteer PDF renderer, and the GitHub Actions workflows that tie it all together |
+| [`resume-admin`](https://github.com/ChamathDilshanC/resume-admin) | A private, single-login Next.js dashboard for editing every section of `resume.json` without touching git by hand |
+
+## How it flows
+
+```mermaid
+flowchart TD
+    A["Tracked project repo<br/>push to main"] -->|repository_dispatch| E
+    B["GitHub Issue Form<br/>new work experience"] -->|issues: opened| E
+    C["resume-admin dashboard<br/>GitHub OAuth login"] -->|Octokit commit| F
+
+    subgraph CORE["resume-core — GitHub Actions"]
+        E["Fetch repo details,<br/>languages, submodules"] --> AI["AI step:<br/>generate ATS bullet points"]
+        AI --> M["Merge into resume.json"]
+        M --> F["Puppeteer renders resume.pdf"]
+    end
+
+    F --> G["Commit & push<br/>resume.json + resume.pdf"]
+    G --> H(["Always-current resume.pdf"])
+
+    style CORE fill:#eff6ff,stroke:#1d4ed8,color:#111827
+    style H fill:#dcfce7,stroke:#16a34a,color:#111827
+```
 
 ## Documentation
 
@@ -17,40 +55,21 @@ single-user web editor for `resume.json`).
 - [`implementation.md`](implementation.md) — phase-by-phase build guide
 - [`technologies-used.md`](technologies-used.md) — technology stack rationale
 - [`References/`](References/) — design/CSS guidelines, git workflow rules,
-  AI prompt specs, and sample resume data used to build `resume-core`
+  AI prompt specs, and the sample resume data used to bootstrap `resume-core`
 
-## The `resume-core` submodule
-
-`resume-core` is the private repository that actually runs the pipeline:
-`resume.json`, the Handlebars `template.html` / `styles.css`, the Puppeteer
-`generate-pdf.js` renderer, the Node.js helper scripts, and the GitHub
-Actions workflows for both the automated project-push flow and the manual
-work-experience Issue Form flow. See its own README for setup instructions.
-
-## The `resume-admin` submodule
-
-`resume-admin` is a Next.js app that gives a full CRUD UI over every section
-of `resume.json` (work, projects, skills, education, certificates,
-references). Sign-in is restricted to a single GitHub account via OAuth;
-saving commits straight to `resume-core` and triggers PDF regeneration. See
-its own README for GitHub OAuth App setup and deployment steps.
-
-### Cloning with the submodule
+## Getting the code
 
 ```bash
 git clone --recurse-submodules https://github.com/ChamathDilshanC/DevResume-Automation-Pipeline.git
 ```
 
-If already cloned without `--recurse-submodules`:
+Already cloned without `--recurse-submodules`?
 
 ```bash
 git submodule update --init --recursive
 ```
 
-### Pulling in updates from resume-core
-
-Since the pipeline commits new `resume.json` / `resume.pdf` versions directly
-to `resume-core`, refresh the submodule pointer here periodically:
+Pull in the latest auto-committed resume data/PDF:
 
 ```bash
 git submodule update --remote resume-core
@@ -62,14 +81,14 @@ git commit -m "chore: bump resume-core submodule reference"
 
 ```
 DevResume Automation Pipeline/
-  architecture.md
-  implementation.md
-  technologies-used.md
-  References/
-    design-guidelines.md
-    git-rules.md
-    prompts.md
-    sample-resume.json
-  resume-core/            <- git submodule (separate repository)
-  resume-admin/           <- git submodule (separate repository)
+├── architecture.md
+├── implementation.md
+├── technologies-used.md
+├── References/
+│   ├── design-guidelines.md
+│   ├── git-rules.md
+│   ├── prompts.md
+│   └── sample-resume.json
+├── resume-core/     ← git submodule (pipeline: data, template, workflows)
+└── resume-admin/    ← git submodule (dashboard: Next.js editor)
 ```
