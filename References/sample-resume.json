@@ -1,0 +1,298 @@
+{
+  "basics": {
+    "name": "CHAMATH DILSHAN",
+    "label": "Associate Software Engineer",
+    "image": "",
+    "email": "chamathdilshan.dev@gmail.com",
+    "phone": "+94 775 616 104",
+    "url": "https://ChamathDilshan.com",
+    "summary": "Motivated Software Engineer with hands-on experience building full-stack web and mobile applications using Java, Spring Boot, Python (FastAPI), React, React Native, and Node.js. Skilled in designing RESTful APIs, modeling relational/NoSQL databases, and shipping production-ready features end to end. Comfortable in agile, Git-based teams, with working knowledge of Docker, CI/CD, and cloud platforms (AWS, GCP, Azure).",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Aluthgama",
+      "countryCode": "LK",
+      "region": "Western Province"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "Chamath Dilshan",
+        "url": ""
+      },
+      {
+        "network": "GitHub",
+        "username": "ChamathDilshanC",
+        "url": "https://github.com/ChamathDilshanC"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Applantics (PVT) Ltd",
+      "position": "Software Engineering Intern",
+      "url": "",
+      "startDate": "",
+      "endDate": "6-Month Internship",
+      "summary": "",
+      "highlights": [
+        "Contributed to application development, debugging, backend integration, and feature testing across live client projects.",
+        "Collaborated with senior engineers on code reviews and release preparation, gaining exposure to production-quality development standards and real project delivery timelines.",
+        "Learned and applied additional technologies on the job, including Laravel, Electron, and Flutter, to support cross-platform feature development."
+      ]
+    },
+    {
+      "name": "Institute of Java Software Engineering, Panadura, SL",
+      "position": "Trainee Software Engineer",
+      "url": "",
+      "startDate": "2023-08",
+      "endDate": "2026-03",
+      "summary": "",
+      "highlights": [
+        "Developed scalable full-stack web applications using Java, Spring Boot, Node.js, and React, ensuring responsive and user-friendly interfaces.",
+        "Designed, built, and integrated RESTful APIs, optimizing MySQL, PostgreSQL, and MongoDB queries, and worked with GitHub-based CI practices.",
+        "Applied debugging, testing, and performance optimization strategies within agile, Git-based team workflows."
+      ]
+    },
+    {
+      "name": "Freelancer.com / Fiverr",
+      "position": "Freelance Software and Graphic Designer",
+      "url": "",
+      "startDate": "2024-11",
+      "endDate": "Present",
+      "summary": "",
+      "highlights": [
+        "Delivered end-to-end client solutions from requirements through deployment, hosting, and production release with strong client satisfaction.",
+        "Designed and developed responsive websites and mobile-friendly interfaces using modern web technologies and usability-focused layouts.",
+        "Combined graphic design, UI/UX design, and front-end web development to deliver polished, client-ready products.",
+        "Managed multiple projects independently, coordinating timelines, client communications, and deliverables effectively."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "level": "",
+      "keywords": [
+        "Java", "Python", "JavaScript", "TypeScript", "PHP", "Bash"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "level": "",
+      "keywords": [
+        "Spring Boot", "Spring Cloud", "FastAPI", "React", "React Native", "Node.js", "Vue.js", "Next.js", "Laravel", "Electron"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "",
+      "keywords": [
+        "MySQL", "PostgreSQL", "MongoDB", "Supabase"
+      ]
+    },
+    {
+      "name": "APIs and Architecture",
+      "level": "",
+      "keywords": [
+        "RESTful APIs", "Microservices", "JWT/OAuth", "API Gateway", "Eureka Service Registry"
+      ]
+    },
+    {
+      "name": "Mobile",
+      "level": "",
+      "keywords": [
+        "React Native", "Flutter", "Expo", "NativeWind"
+      ]
+    },
+    {
+      "name": "Cloud and DevOps",
+      "level": "",
+      "keywords": [
+        "AWS", "GCP", "Azure", "Docker", "Docker Compose", "GitHub Actions CI/CD"
+      ]
+    },
+    {
+      "name": "Tools",
+      "level": "",
+      "keywords": [
+        "Git", "GitHub", "Postman", "Figma"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "VibeNet",
+      "description": "Secure Real-Time End-to-End Encrypted Chat Platform",
+      "highlights": [
+        "Frontend: Built a real-time E2EE chat client using Next.js 16 and TypeScript with Web Crypto API-based encryption, styled with Tailwind CSS and deployed live on Vercel.",
+        "Backend: Developed a Go backend with WebSocket-based real-time messaging and DynamoDB/PostgreSQL for data storage, deployed on AWS EC2 with automated CI/CD pipelines.",
+        "Architected the system as a multi-repository monorepo with Git submodules, comprehensive architecture documentation, and an AWS infrastructure setup guide."
+      ],
+      "url": "VibeNet Monorepo"
+    },
+    {
+      "name": "RevvUp",
+      "description": "Multi-Showroom Motorbike Marketplace",
+      "highlights": [
+        "Built a premium multi-showroom motorbike marketplace with a React Native (Expo) client and a FastAPI backend deployed serverless on Vercel.",
+        "Integrated Supabase for authentication, data storage, and Google sign-in, and automated Android release builds with GitHub Actions."
+      ],
+      "url": "Main Application | Backend API | Frontend CI/CD"
+    },
+    {
+      "name": "FinFlow",
+      "description": "Personal Finance Mobile Application",
+      "highlights": [
+        "Developed a cross-platform personal finance app (React Native, Expo, NativeWind) with Google authentication and a real-time expense tracking UI.",
+        "Built an async FastAPI backend with SQLAlchemy, Alembic migrations, PostgreSQL, and JWT-secured REST endpoints, documented with Swagger."
+      ],
+      "url": "Frontend | Backend"
+    },
+    {
+      "name": "Nexa G Bucket Manager",
+      "description": "Cloud File Manager with CI/CD",
+      "highlights": [
+        "Built a GCP-backed private/public cloud file manager (React Native/Expo, FastAPI, Supabase, Google Cloud Storage).",
+        "Automated Android APK builds and releases with GitHub Actions, including secrets injection and versioned release publishing."
+      ],
+      "url": "Mobile App Frontend CI/CD Backend"
+    },
+    {
+      "name": "Distributed Microservices Architecture",
+      "description": "Cafeteria Management System",
+      "highlights": [
+        "Engineered a scalable microservices platform using Spring Cloud with API Gateway, Config Server, and Eureka Service Registry.",
+        "Developed loosely coupled services (User, Menu, Order, Kitchen) with centralized Git-based configuration and Docker Compose infrastructure (PostgreSQL, MongoDB)."
+      ],
+      "url": "Main Repository | Configurations | Platform | Services"
+    },
+    {
+      "name": "JobMail",
+      "description": "Job Application Email Generator",
+      "highlights": [
+        "Built a Next.js application for generating and sending professional job application emails with real-time preview and multiple templates.",
+        "Integrated Firebase Authentication, Gmail API (OAuth + attachments), and Outlook mailto workflows; deployed live at jobemail.me."
+      ],
+      "url": "Live App GitHub Repository"
+    },
+    {
+      "name": "SpendSight",
+      "description": "Mobile Finance Application",
+      "highlights": [
+        "Built a cross-platform React Native finance app with NativeWind and Firebase for expense tracking, account management, and secure authentication."
+      ],
+      "url": "SpendSight Mobile Application"
+    },
+    {
+      "name": "TaskFlow",
+      "description": "Laravel Authentication System",
+      "highlights": [
+        "Built a modern authentication system with Laravel 12 and Tailwind CSS, featuring custom sign-up/sign-in pages and a polished UI, deployed on Railway."
+      ],
+      "url": "Laravel Auth Demo App"
+    },
+    {
+      "name": "PowerAlert",
+      "description": "Utility Monitoring Platform",
+      "highlights": [
+        "Built a full-stack utility monitoring platform with RESTful APIs, JWT-based access control, and responsive real-time monitoring workflows."
+      ],
+      "url": "Frontend | Backend"
+    },
+    {
+      "name": "Ceylonic & create-stack-cli",
+      "description": "Open-Source npm Packages",
+      "highlights": [
+        "create-stack-cli: Built a universal, interactive CLI scaffolder for React, Vue, Angular, and Vanilla JS projects with optional TypeScript, Tailwind CSS, ESLint, and Prettier integration, published as an open-source npm package.",
+        "ceylonic: Developed a zero-dependency TypeScript utility library for Sri Lanka-specific data NIC parsing/validation plus Sinhala date, currency, and number formatting published as an npm package under the MIT license."
+      ],
+      "url": "create-stack-cli | ceylonic"
+    },
+    {
+      "name": "GCP Cloud Storage APIs and Cloud-Based Applications",
+      "description": "",
+      "highlights": [
+        "Built a Spring Boot REST API migrating local file storage to Google Cloud Storage with multi-environment deployment profiles.",
+        "Developed a Vue.js student management system backed by GCP Cloud SQL (PostgreSQL) and Cloud Functions."
+      ],
+      "url": "Image Cloud Storage API | Student Management Cloud App"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Practical GitHub Actions and Kubernetes Fundamentals",
+      "date": "",
+      "issuer": "LinkedIn Learning",
+      "url": "LinkedIn Certifications"
+    },
+    {
+      "name": "Manage Virtual Machines in Azure",
+      "date": "",
+      "issuer": "Microsoft",
+      "url": ""
+    },
+    {
+      "name": "Front-End Web Development",
+      "date": "",
+      "issuer": "University of Moratuwa",
+      "url": ""
+    }
+  ],
+  "education": [
+    {
+      "institution": "Institute of Software Engineering",
+      "url": "",
+      "area": "Computer Science (Top-Up)",
+      "studyType": "BSc (Hons)",
+      "startDate": "2023-08",
+      "endDate": "2026-03",
+      "score": "",
+      "courses": []
+    },
+    {
+      "institution": "University of Moratuwa",
+      "url": "",
+      "area": "Full Stack Engineer",
+      "studyType": "Certificate",
+      "startDate": "2025-06",
+      "endDate": "2025-08",
+      "score": "",
+      "courses": []
+    },
+    {
+      "institution": "Oxbridge College",
+      "url": "",
+      "area": "Spoken English",
+      "studyType": "Diploma",
+      "startDate": "2023-03",
+      "endDate": "2024-03",
+      "score": "",
+      "courses": []
+    },
+    {
+      "institution": "K/Gurulugomie Maha Vidyalaya",
+      "url": "",
+      "area": "Commerce",
+      "studyType": "GCE A/L and O/L",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "references": [
+    {
+      "name": "Hiruvinda Premathilaka",
+      "reference": "Director | Applantics (PVT) Ltd | +94 76 766 6434"
+    },
+    {
+      "name": "Charith Lakshan",
+      "reference": "Director | Applantics (PVT) Ltd | +94 77 479 5559"
+    },
+    {
+      "name": "Mr. Prasad Waduge",
+      "reference": "Institute of Software Engineering | +94 71 430 3366"
+    }
+  ]
+}
