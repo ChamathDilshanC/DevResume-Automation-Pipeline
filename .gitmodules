@@ -1,3 +1,6 @@
 [submodule "resume-core"]
 	path = resume-core
 	url = https://github.com/ChamathDilshanC/resume-core.git
+[submodule "resume-admin"]
+	path = resume-admin
+	url = https://github.com/ChamathDilshanC/resume-admin.git

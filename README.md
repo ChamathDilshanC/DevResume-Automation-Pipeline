@@ -5,9 +5,11 @@ continuously up to date with **zero manual backend coding** and **zero
 self-hosted infrastructure** — orchestrated entirely by GitHub Actions.
 
 This is the main/parent project: it holds the architecture, implementation,
-and design documentation, plus the [`resume-core`](https://github.com/ChamathDilshanC/resume-core)
-repository as a git submodule (the actual resume data, template, PDF
-generator, and workflows live there).
+and design documentation, plus two git submodules —
+[`resume-core`](https://github.com/ChamathDilshanC/resume-core) (the resume
+data, template, PDF generator, and workflows) and
+[`resume-admin`](https://github.com/ChamathDilshanC/resume-admin) (a private,
+single-user web editor for `resume.json`).
 
 ## Documentation
 
@@ -24,6 +26,14 @@ generator, and workflows live there).
 `generate-pdf.js` renderer, the Node.js helper scripts, and the GitHub
 Actions workflows for both the automated project-push flow and the manual
 work-experience Issue Form flow. See its own README for setup instructions.
+
+## The `resume-admin` submodule
+
+`resume-admin` is a Next.js app that gives a full CRUD UI over every section
+of `resume.json` (work, projects, skills, education, certificates,
+references). Sign-in is restricted to a single GitHub account via OAuth;
+saving commits straight to `resume-core` and triggers PDF regeneration. See
+its own README for GitHub OAuth App setup and deployment steps.
 
 ### Cloning with the submodule
 
@@ -61,4 +71,5 @@ DevResume Automation Pipeline/
     prompts.md
     sample-resume.json
   resume-core/            <- git submodule (separate repository)
+  resume-admin/           <- git submodule (separate repository)
 ```
