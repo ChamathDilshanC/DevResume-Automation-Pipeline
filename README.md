@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="resume-core/assets/logo-wordmark.png" alt="DevResume" width="360" />
+<img src="https://github.com/ChamathDilshanC/resume-core/blob/main/assets/logo-wordmark.png" alt="DevResume" width="360" />
 
 ### Event-driven Software Engineering resume pipeline — zero manual backend code, zero self-hosted infrastructure.
 
