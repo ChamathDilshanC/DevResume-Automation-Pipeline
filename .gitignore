@@ -3,3 +3,8 @@ npm-debug.log*
 .env
 *.log
 .DS_Store
+
+# resume-data is a separate private repo (not a submodule — this repo is
+# public, and submodule init would break `git clone --recurse-submodules`
+# for anyone without access to it)
+/resume-data/

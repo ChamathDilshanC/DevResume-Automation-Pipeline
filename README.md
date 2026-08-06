@@ -25,8 +25,15 @@ two git submodules that do the actual work.
 
 | Submodule | Role |
 |---|---|
-| [`resume-core`](https://github.com/ChamathDilshanC/resume-core) | Source of truth (`resume.json`), Handlebars/CSS template, Puppeteer PDF renderer, and the GitHub Actions workflows that tie it all together |
+| [`resume-core`](https://github.com/ChamathDilshanC/resume-core) | Handlebars/CSS template, Puppeteer PDF renderer, and the GitHub Actions workflows that tie it all together |
 | [`resume-admin`](https://github.com/ChamathDilshanC/resume-admin) | A private, single-login Next.js dashboard for editing every section of `resume.json` without touching git by hand |
+
+The actual `resume.json` — contact details, reference phone numbers — lives
+in a third repo, [`resume-data`](https://github.com/ChamathDilshanC/resume-data),
+kept **private** and deliberately *not* wired in as a submodule here (this
+repo is public; a private submodule would break `git clone --recurse-submodules`
+for anyone without access to it). `resume-core`'s workflows and the
+`resume-admin` dashboard both reach it directly over the GitHub API.
 
 ## How it flows
 
@@ -34,7 +41,8 @@ two git submodules that do the actual work.
 flowchart TD
     A["Tracked project repo<br/>push to main"] -->|repository_dispatch| E
     B["GitHub Issue Form<br/>new work experience"] -->|issues: opened| E
-    C["resume-admin dashboard<br/>GitHub OAuth login"] -->|Octokit commit| F
+    C["resume-admin dashboard<br/>GitHub OAuth login"] -->|Octokit commit| DATA
+    C -->|workflow_dispatch| F
 
     subgraph CORE["resume-core — GitHub Actions"]
         E["Fetch repo details,<br/>languages, submodules"] --> AI["AI step:<br/>generate ATS bullet points"]
@@ -42,8 +50,11 @@ flowchart TD
         M --> F["Puppeteer renders resume.pdf"]
     end
 
-    F --> G["Commit & push<br/>resume.json + resume.pdf"]
+    M -->|push| DATA[("resume-data<br/>(private)")]
+    F --> G["Commit & push resume.pdf"]
     G --> H(["Always-current resume.pdf"])
+
+    style DATA fill:#fef2f2,stroke:#dc2626,color:#111827
 
     style CORE fill:#eff6ff,stroke:#1d4ed8,color:#111827
     style H fill:#dcfce7,stroke:#16a34a,color:#111827
@@ -106,6 +117,11 @@ DevResume Automation Pipeline/
 │   ├── git-rules.md
 │   ├── prompts.md
 │   └── sample-resume.json
-├── resume-core/     ← git submodule (pipeline: data, template, workflows)
+├── resume-core/     ← git submodule (pipeline: template, PDF renderer, workflows)
 └── resume-admin/    ← git submodule (dashboard: Next.js editor)
 ```
+
+`resume.json` itself lives in a private third repo,
+[`resume-data`](https://github.com/ChamathDilshanC/resume-data) — not cloned
+here, not a submodule, reached only over the GitHub API by `resume-core`'s
+workflows and the `resume-admin` dashboard.
