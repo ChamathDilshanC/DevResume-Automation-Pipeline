@@ -49,6 +49,23 @@ flowchart TD
     style H fill:#dcfce7,stroke:#16a34a,color:#111827
 ```
 
+## Screenshots
+
+The `resume-admin` dashboard — full-width card editor, GitHub-import with AI-drafted bullets, click-through detail views:
+
+<table>
+<tr>
+<td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/basics.png" alt="Basics tab" /><br/><sub><b>Basics</b></sub></td>
+<td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/projects.png" alt="Projects tab" /><br/><sub><b>Projects</b></sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/import-from-github.png" alt="Import from GitHub dialog" /><br/><sub><b>Add project → Import from GitHub</b></sub></td>
+<td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/skills.png" alt="Skills tab" /><br/><sub><b>Skills</b></sub></td>
+</tr>
+</table>
+
+More in [`resume-admin`'s README](https://github.com/ChamathDilshanC/resume-admin#screenshots).
+
 ## Documentation
 
 - [`architecture.md`](architecture.md) — system architecture and data flow
