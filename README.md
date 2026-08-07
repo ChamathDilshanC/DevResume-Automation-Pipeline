@@ -51,7 +51,7 @@ flowchart TD
     end
 
     M -->|push| DATA[("resume-data<br/>(private)")]
-    F --> G["Commit & push resume.pdf"]
+    F --> G["Upload resume.pdf to Google Drive"]
     G --> H(["Always-current resume.pdf"])
 
     style DATA fill:#fef2f2,stroke:#dc2626,color:#111827

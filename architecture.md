@@ -16,14 +16,14 @@ The Automated Resume Pipeline is an event-driven architecture designed to mainta
 *   Handles event ingestion (`repository_dispatch`, `issues`), GitHub API communications, logic routing (via job steps and `actions/github-script`), JSON data merging (via a Node.js step), and PDF rendering — all on GitHub-hosted runners.
 
 ### 2.3. AI Processing Node
-*   Utilizes GitHub Models (GPT-4o-mini) or Gemini API, called via an HTTP request step (`curl` or `actions/github-script`) inside the workflow.
+*   Utilizes the Google Gemini API (`gemini-flash-latest`, falling back through `gemini-2.5-flash` / `gemini-2.5-flash-lite`), called via a Node.js step inside the workflow. GitHub Models was retired 2026-07-30 and is no longer used.
 *   Receives raw project data and uses a predefined System Prompt to generate professional, ATS-friendly bullet points that seamlessly integrate the tech stack.
-*   The AI API key is stored as an encrypted GitHub Actions Secret (`AI_API_KEY`) and never leaves the runner.
+*   The AI API key is stored as an encrypted GitHub Actions Secret (`AI_API_KEY`, can hold multiple comma-separated keys for quota fallback) and never leaves the runner.
 
-### 2.4. Storage & File System (GitHub Main Resume Repo)
-*   `resume.json`: The single source of truth structured according to the JSON Resume Standard.
+### 2.4. Storage & File System
+*   `resume.json`: The single source of truth structured according to the JSON Resume Standard, kept in the private `resume-data` repo.
 *   `template.html`: The visual layout utilizing Handlebars.js and CSS.
-*   `resume.pdf`: The final compiled output file.
+*   `resume.pdf`: The final compiled output file — rendered on the runner, then uploaded straight to Google Drive via the Drive API (`scripts/upload-to-drive.js`). It is never committed to `resume-core`.
 
 ### 2.5. PDF Generation Engine
 *   A Node.js script utilizing **Puppeteer** (Headless Chrome), executed directly as a workflow step on the GitHub-hosted `ubuntu-latest` runner — no external VM or Docker host required.
@@ -38,12 +38,12 @@ The Automated Resume Pipeline is an event-driven architecture designed to mainta
 3. **AI Generation:** A workflow step sends the aggregated data to the AI API to generate professional bullet points.
 4. **Data Merge:** A Node.js step reads the existing `resume.json`, appends the AI-generated object to the `projects` array, and writes it back to the runner's workspace.
 5. **Render:** The workflow runs `node generate-pdf.js` to render the updated PDF.
-6. **Deploy:** The workflow commits and pushes the updated `resume.json` and `resume.pdf` back to `resume-core` using the built-in `GITHUB_TOKEN`.
+6. **Deploy:** The workflow pushes the updated `resume.json` to `resume-data` using a fine-grained PAT, then uploads `resume.pdf` in place to Google Drive via a service account (`scripts/upload-to-drive.js`).
 
 ### Flow B: Manual Work Experience Integration
 1. **Input:** User fills out the GitHub Issue Form for new Work Experience (Company, Position, Start Date, End Date, Rough Description).
 2. **Trigger:** Submitting the form opens a labeled (`work-experience`) issue in `resume-core`, which fires the `issues: opened` event.
-3. **Process:** The workflow parses the issue body, formats the input via the AI step, updates the `work` array in `resume.json`, then runs the exact same PDF generation and commit steps as Flow A, and closes the issue.
+3. **Process:** The workflow parses the issue body, formats the input via the AI step, updates the `work` array in `resume.json`, then runs the exact same PDF generation and Drive upload steps as Flow A, and closes the issue.
 
 ---
 
@@ -73,5 +73,5 @@ To prevent monorepos from appearing as multiple separate projects:
                       ├─► 🖨️ PDF Engine (Puppeteer renders HTML + JSON)
                       │
                       ▼
-            [ Main Resume Repo ]
-      (Commits new resume.json & resume.pdf via GITHUB_TOKEN)
+      [ resume-data repo ]         [ Google Drive ]
+   (resume.json via PAT push)   (resume.pdf overwritten via Drive API)

@@ -65,8 +65,9 @@ Create `.github/workflows/update-resume.yml`, triggered `on: repository_dispatch
 **Step 5 — PDF Generation (Run Script Step)**
 *   Run the `node generate-pdf.js` script to generate the updated `resume.pdf`.
 
-**Step 6 — Commit & Push Step**
-*   Commit and push the new `resume.json` and `resume.pdf` back to the `resume-core` repository, authenticated with the default `GITHUB_TOKEN` (e.g. via `git commit`/`git push` or `stefanzweifel/git-auto-commit-action@v5`).
+**Step 6 — Publish Step**
+*   Push the new `resume.json` to the private `resume-data` repository using a fine-grained PAT.
+*   Upload the new `resume.pdf` in place to Google Drive via a service account and the Drive API (`scripts/upload-to-drive.js`) — it is never committed back to `resume-core`.
 
 ---
 
