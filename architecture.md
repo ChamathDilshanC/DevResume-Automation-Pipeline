@@ -23,7 +23,7 @@ The Automated Resume Pipeline is an event-driven architecture designed to mainta
 ### 2.4. Storage & File System
 *   `resume.json`: The single source of truth structured according to the JSON Resume Standard, kept in the private `resume-data` repo.
 *   `template.html`: The visual layout utilizing Handlebars.js and CSS.
-*   `resume.pdf`: The final compiled output file — rendered on the runner, then uploaded straight to Google Drive via the Drive API (`scripts/upload-to-drive.js`). It is never committed to `resume-core`.
+*   `resume.pdf`: The final compiled output file — rendered on the runner, then uploaded straight to Google Drive via the Drive API (`scripts/upload-to-drive.js`) and sent as a document message via the WhatsApp Cloud API (`scripts/send-whatsapp.js`). It is never committed to `resume-core`.
 
 ### 2.5. PDF Generation Engine
 *   A Node.js script utilizing **Puppeteer** (Headless Chrome), executed directly as a workflow step on the GitHub-hosted `ubuntu-latest` runner — no external VM or Docker host required.
@@ -38,7 +38,7 @@ The Automated Resume Pipeline is an event-driven architecture designed to mainta
 3. **AI Generation:** A workflow step sends the aggregated data to the AI API to generate professional bullet points.
 4. **Data Merge:** A Node.js step reads the existing `resume.json`, appends the AI-generated object to the `projects` array, and writes it back to the runner's workspace.
 5. **Render:** The workflow runs `node generate-pdf.js` to render the updated PDF.
-6. **Deploy:** The workflow pushes the updated `resume.json` to `resume-data` using a fine-grained PAT, then uploads `resume.pdf` in place to Google Drive via a service account (`scripts/upload-to-drive.js`).
+6. **Deploy:** The workflow pushes the updated `resume.json` to `resume-data` using a fine-grained PAT, uploads `resume.pdf` in place to Google Drive via a service account (`scripts/upload-to-drive.js`), then sends it as a WhatsApp document message (`scripts/send-whatsapp.js`).
 
 ### Flow B: Manual Work Experience Integration
 1. **Input:** User fills out the GitHub Issue Form for new Work Experience (Company, Position, Start Date, End Date, Rough Description).
@@ -73,5 +73,6 @@ To prevent monorepos from appearing as multiple separate projects:
                       ├─► 🖨️ PDF Engine (Puppeteer renders HTML + JSON)
                       │
                       ▼
-      [ resume-data repo ]         [ Google Drive ]
-   (resume.json via PAT push)   (resume.pdf overwritten via Drive API)
+      [ resume-data repo ]    [ Google Drive ]    [ WhatsApp ]
+   (resume.json via PAT push)  (resume.pdf via   (resume.pdf via
+                                 Drive API)         Graph API)

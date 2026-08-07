@@ -67,7 +67,7 @@ Create `.github/workflows/update-resume.yml`, triggered `on: repository_dispatch
 
 **Step 6 — Publish Step**
 *   Push the new `resume.json` to the private `resume-data` repository using a fine-grained PAT.
-*   Upload the new `resume.pdf` in place to Google Drive via a service account and the Drive API (`scripts/upload-to-drive.js`) — it is never committed back to `resume-core`.
+*   Upload the new `resume.pdf` in place to Google Drive via a service account and the Drive API (`scripts/upload-to-drive.js`), then send it as a document message via the WhatsApp Cloud API (`scripts/send-whatsapp.js`) — it is never committed back to `resume-core`.
 
 ---
 
