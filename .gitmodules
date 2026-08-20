@@ -4,3 +4,6 @@
 [submodule "resume-admin"]
 	path = resume-admin
 	url = https://github.com/ChamathDilshanC/resume-admin.git
+[submodule "devresume-api"]
+	path = devresume-api
+	url = https://github.com/ChamathDilshanC/devresume-api.git
