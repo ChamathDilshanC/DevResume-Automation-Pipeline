@@ -16,7 +16,7 @@ The Automated Resume Pipeline is an event-driven architecture designed to mainta
 *   Handles event ingestion (`repository_dispatch`, `issues`), GitHub API communications, logic routing (via job steps and `actions/github-script`), JSON data merging (via a Node.js step), and PDF rendering — all on GitHub-hosted runners.
 
 ### 2.3. AI Processing Node
-*   Utilizes the Google Gemini API (`gemini-flash-latest`, falling back through `gemini-2.5-flash` / `gemini-2.5-flash-lite`), called via a Node.js step inside the workflow. GitHub Models was retired 2026-07-30 and is no longer used.
+*   Utilizes the Google Gemini API (`gemini-flash-latest`, falling back through `gemini-flash-lite-latest` / `gemini-3.6-flash`), called via a Node.js step inside the workflow. GitHub Models was retired 2026-07-30 and is no longer used.
 *   Receives raw project data and uses a predefined System Prompt to generate professional, ATS-friendly bullet points that seamlessly integrate the tech stack.
 *   The AI API key is stored as an encrypted GitHub Actions Secret (`AI_API_KEY`, can hold multiple comma-separated keys for quota fallback) and never leaves the runner.
 
