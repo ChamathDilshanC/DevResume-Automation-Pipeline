@@ -86,6 +86,11 @@ run automatically on page load or on every push.
    resulting `mockups` array as a reorderable gallery (feature/hide/reorder/
    remove), persisted through the same `saveResume` flow as every other
    resume field — no separate save path.
+5. **Browsing:** a dedicated `/dashboard/drive` page (linked from the
+   sidebar as "Project Drive", alongside the existing resume-PDF Drive
+   link) shows every project's synced files grouped together with a
+   click-to-enlarge preview — read-only browsing of what's already synced;
+   editing selection/order stays on the Projects tab.
 
 ---
 
