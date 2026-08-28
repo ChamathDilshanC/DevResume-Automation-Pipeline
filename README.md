@@ -21,12 +21,13 @@ server, no database, no self-hosted cron job. Every moving part is either a
 GitHub Actions workflow or a stateless Next.js app.
 
 This repository is the **parent project**: architecture/design docs, plus
-two git submodules that do the actual work.
+the git submodules that do the actual work.
 
 | Submodule | Role |
 |---|---|
 | [`resume-core`](https://github.com/ChamathDilshanC/resume-core) | Handlebars/CSS template, Puppeteer PDF renderer, and the GitHub Actions workflows that tie it all together |
 | [`resume-admin`](https://github.com/ChamathDilshanC/resume-admin) | A private, single-login Next.js dashboard for editing every section of `resume.json` without touching git by hand |
+| [`devresume-api`](https://github.com/ChamathDilshanC/devresume-api) | A Rust/Axum backend for **DevResume AI** — an in-development, multi-user successor (resume generation, ATS scoring, portfolio building, hybrid search); built independently of, and not yet wired into, the automated flow below |
 
 The actual `resume.json` — contact details, reference phone numbers — lives
 in a third repo, [`resume-data`](https://github.com/ChamathDilshanC/resume-data),
@@ -74,6 +75,10 @@ The `resume-admin` dashboard — full-width card editor, GitHub-import with AI-d
 <td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/import-from-github.png" alt="Import from GitHub dialog" /><br/><sub><b>Add project → Import from GitHub</b></sub></td>
 <td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/skills.png" alt="Skills tab" /><br/><sub><b>Skills</b></sub></td>
 </tr>
+<tr>
+<td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/templates.png" alt="Templates tab" /><br/><sub><b>Templates</b> — live PDF previews, switch layout in one click</sub></td>
+<td width="50%"><img src="https://github.com/ChamathDilshanC/resume-admin/blob/main/.github/screenshots/project-drive.png" alt="Project Drive gallery" /><br/><sub><b>Project Drive</b> — every project's Google Drive folder, live</sub></td>
+</tr>
 </table>
 
 More in [`resume-admin`'s README](https://github.com/ChamathDilshanC/resume-admin#screenshots).
@@ -118,8 +123,9 @@ DevResume Automation Pipeline/
 │   ├── git-rules.md
 │   ├── prompts.md
 │   └── sample-resume.json
-├── resume-core/     ← git submodule (pipeline: template, PDF renderer, workflows)
-└── resume-admin/    ← git submodule (dashboard: Next.js editor)
+├── resume-core/      ← git submodule (pipeline: template, PDF renderer, workflows)
+├── resume-admin/     ← git submodule (dashboard: Next.js editor)
+└── devresume-api/    ← git submodule (Rust/Axum backend for DevResume AI, independent product)
 ```
 
 `resume.json` itself lives in a private third repo,
