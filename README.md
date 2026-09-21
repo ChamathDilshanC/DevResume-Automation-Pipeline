@@ -64,6 +64,32 @@ flowchart TD
 
 ## Screenshots
 
+### Automation in action
+
+The complete DevResume experience — from the automated pipeline to the final
+resume delivery on mobile:
+
+<p align="center">
+  <img src="References/Screenshots/devresume-automation-pipeline.png" alt="DevResume Automation Pipeline mobile delivery preview" width="100%" />
+</p>
+
+<p align="center">
+  <sub><b>DevResume Automation Pipeline</b> — an updated resume delivered automatically through email and WhatsApp.</sub>
+</p>
+
+<table>
+<tr>
+<td width="50%"><img src="References/Screenshots/github-actions-workflow.png" alt="Successful GitHub Actions resume regeneration workflow" /><br/><sub><b>Automated workflow</b> — generate, upload, email, and WhatsApp delivery jobs</sub></td>
+<td width="50%"><img src="References/Screenshots/mobile-notification-preview.png" alt="Mobile notification showing an updated resume" /><br/><sub><b>Instant notification</b> — know as soon as the resume is regenerated</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="References/Screenshots/resume-delivery-email.png" alt="Resume regeneration email with PDF attachments" /><br/><sub><b>Email delivery</b> — the latest PDF attached and ready to share</sub></td>
+<td width="50%"><img src="References/Screenshots/resume-delivery-whatsapp.png" alt="Resume PDF delivered through WhatsApp" /><br/><sub><b>WhatsApp delivery</b> — receive the updated PDF on mobile</sub></td>
+</tr>
+</table>
+
+### Resume admin dashboard
+
 The `resume-admin` dashboard — full-width card editor, GitHub-import with AI-drafted bullets, click-through detail views:
 
 <table>
@@ -122,6 +148,7 @@ DevResume Automation Pipeline/
 │   ├── design-guidelines.md
 │   ├── git-rules.md
 │   ├── prompts.md
+│   ├── Screenshots/
 │   └── sample-resume.json
 ├── resume-core/      ← git submodule (pipeline: template, PDF renderer, workflows)
 ├── resume-admin/     ← git submodule (dashboard: Next.js editor)
