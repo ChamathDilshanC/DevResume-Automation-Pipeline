@@ -117,6 +117,40 @@ More in [`resume-admin`'s README](https://github.com/ChamathDilshanC/resume-admi
 - [`References/`](References/) — design/CSS guidelines, git workflow rules,
   AI prompt specs, and the sample resume data used to bootstrap `resume-core`
 
+## 🔌 JobMail integration
+
+DevResume can be connected to [JobMail](https://github.com/ChamathDilshanC/Job_Email_Generator---Sender-Gmail-Outlook)
+for job-application workflows. JobMail verifies a short-lived code generated
+by this application, stores only the account relationship, and can retrieve
+the latest resume PDF for an email attachment.
+
+```mermaid
+flowchart LR
+    A[DevResume account] -->|short-lived code| B[JobMail Profile]
+    B -->|server-to-server verification| C[(Integration link)]
+    C --> D[Latest resume PDF]
+    D --> E[Gmail application attachment]
+    B -->|Disconnect| C
+    C -.->|link deleted; resume data retained| A
+```
+
+The integration is one-to-one per account. Users can revoke it from the
+JobMail profile screen at any time; revocation deletes the link only and keeps
+resume content intact.
+
+### Delivery and automation scorecard
+
+| Capability | Automated | Output |
+| --- | :---: | --- |
+| Resume generation pipeline | ✅ | Versioned PDF |
+| ATS-oriented content | ✅ | Structured resume data |
+| JobMail attachment sync | ✅ | Latest PDF available to send |
+| Manual disconnect | ✅ | Immediate link revocation |
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ChamathDilshanC/Job_Email_Generator---Sender-Gmail-Outlook/main/docs/screenshots/profile.png" alt="JobMail profile and DevResume integration controls" width="900" />
+</p>
+
 ## Getting the code
 
 ```bash
