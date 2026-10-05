@@ -57,7 +57,8 @@ To prevent monorepos from appearing as multiple separate projects:
 ## 5. Project Drive Folders & Mockup Sync
 
 Separate from the single `resume.pdf` Drive upload (§2.4), each project in
-`resume.json` can have its own Drive folder for mockups/screenshots/assets,
+`resume.json` can have its own Drive folder for mockups/screenshots/assets/
+animations,
 managed by `resume-core/scripts/sync-drive-folders.js` and triggered
 on-demand — from `resume-admin`'s Projects tab (`workflow_dispatch` on
 `sync-drive-mockups.yml`, the same pattern `resume-admin` already uses to
@@ -69,15 +70,16 @@ run automatically on page load or on every push.
    first (survives a repo rename without creating a duplicate folder), and
    only falls back to a by-name find-or-create under
    `GOOGLE_DRIVE_PROJECTS_ROOT_FOLDER_ID` if that ID no longer resolves.
-   `mockups/`, `screenshots/`, `assets/` subfolders are find-or-created the
-   same way — idempotent on every run.
+   `mockups/`, `screenshots/`, `assets/`, `animations/` subfolders are
+   find-or-created the same way — idempotent on every run.
 2. **Submodule exclusion:** Only projects with `repositoryType` unset or
    `"MAIN"` are synced — a project recorded as `"SUBMODULE"` (reserved for
    future explicit promotion, `parentProjectId`-style) is skipped, so a
    monorepo's submodules never get their own Drive folder or portfolio
    entry, consistent with §4's aggregation-not-fragmentation goal.
 3. **Mockup reconciliation:** Each subfolder is scanned for PNG/JPG/WEBP
-   files. New files become new mockup records (enabled by default);
+   files (`animations/` also accepts MP4/WEBM/MOV). New files become new
+   mockup records (enabled by default);
    already-known files (matched by Drive file ID, not filename) keep their
    `enabled`/`featured`/`displayOrder`/`caption` state; files no longer
    found in Drive are kept but flagged `missing` and force-disabled rather
