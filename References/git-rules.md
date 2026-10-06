@@ -1,15 +1,15 @@
 # Git & Development Workflow Rules
 
-This document defines the strict version control and development guidelines the AI Agent (e.g., Claude Code) MUST follow while generating, committing, and pushing code for this repository.
+This document defines the version control and development guidelines for creating, committing, and pushing changes to this repository.
 
-## 1. Strict Author Identity (No AI Footprints)
-*   **Rule:** The ONLY authorized author for all commits, files, and documentation is **Chamath Dilshan** (GitHub: **ChamathDilshanC**).
+## 1. Author Identity
+*   **Rule:** Use **ChamathDilshanC** as the author for project commits and author metadata.
 *   **Action:** Before making any commits, you MUST ensure the local Git configuration is set exactly to the following:
     ```bash
-    git config user.name "Chamath Dilshan"
+    git config user.name "ChamathDilshanC"
     git config user.email "chamathdilshan.dev@gmail.com"
     ```
-*   **Constraint:** DO NOT include "Claude", "AI", "Anthropic", "Co-authored-by", or any indication of AI generation in the commit history, commit descriptions, source code comments, or author metadata. The repository must appear 100% human-authored by ChamathDilshanC.
+*   **Constraint:** Do not add tool attribution, generated-by notices, or additional author trailers to project commits, documentation, or source comments. Preserve third-party license notices.
 
 ## 2. Commit Frequency & Granularity (Atomic Commits)
 *   **Rule:** Do not lump all code into a single massive commit at the end of the project.

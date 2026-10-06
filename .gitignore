@@ -8,3 +8,10 @@ npm-debug.log*
 # public, and submodule init would break `git clone --recurse-submodules`
 # for anyone without access to it)
 /resume-data/
+
+# Local CV drafts contain private contact and career data.
+/output/
+
+# Separate profile checkout and local transfer scratch file.
+/github-profile/
+/temp.b64
