@@ -109,6 +109,25 @@ The `resume-admin` dashboard — full-width card editor, GitHub-import with AI-d
 
 More in [`resume-admin`'s README](https://github.com/ChamathDilshanC/resume-admin#screenshots).
 
+### Auto-save and GitHub import
+
+Edits are committed automatically a couple of seconds after the last change, **Save** and **Regenerate PDF** are separate buttons, and importing a repository reads its README files to pre-fill the evidence form:
+
+<p align="center">
+  <img src="References/Screenshots/admin-basics-autosave.png" alt="Admin dashboard header with Auto-save, Save and Regenerate PDF" width="100%" />
+</p>
+
+<table>
+<tr>
+<td width="50%"><img src="References/Screenshots/import-autofill-progress.png" alt="Import from GitHub with a live auto-fill progress bar" /><br/><sub><b>Auto-fill from repo</b> — reads the repository and submodule READMEs with live progress</sub></td>
+<td width="50%"><img src="References/Screenshots/import-generating-draft.png" alt="Generating the project draft" /><br/><sub><b>Generate draft</b> — drafts the description and highlights from the README evidence</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="References/Screenshots/import-review-generated-project.png" alt="Review generated project with README sources" /><br/><sub><b>Review</b> — sources listed, highlights editable before adding</sub></td>
+<td width="50%"><img src="References/Screenshots/project-detail-evidence.png" alt="Project detail with dates and pre-filled evidence" /><br/><sub><b>Project detail</b> — dates from the repository, evidence pre-filled for review</sub></td>
+</tr>
+</table>
+
 ## Documentation
 
 - [`architecture.md`](architecture.md) — system architecture and data flow
