@@ -50,6 +50,11 @@ This document details the technology stack powering the Automated Resume Pipelin
 *   **Why we use it:** To ensure the resume stays up-to-date in near real-time as development happens, and to collect manual updates without hosting a separate form or webhook receiver.
 *   **How it is used:** Tracked repositories fire a `repository_dispatch` event to `resume-core` when pushed to. A GitHub Issue Form collects manual Work Experience entries and triggers the workflow via the `issues: opened` event. The workflow then uses the REST API and `GITHUB_TOKEN` to commit the generated files back to the repository.
 
+### **JobMail tailored-CV bridge**
+*   **What it is:** A server-to-server integration between JobMail, DevResume Admin, and a private `workflow_dispatch` path in `resume-core`.
+*   **Why we use it:** It produces a role/company-specific PDF for one application without mutating the canonical resume or Drive file.
+*   **How it is used:** DevResume Admin dispatches `generate-jobmail-resume.yml` with bounded inputs. The workflow renders a private in-memory overlay using Node.js and Puppeteer, uploads a one-day GitHub artifact, and lets the admin bridge validate and return the matching PDF. The shared secret and GitHub token remain server-only.
+
 ---
 
 ## 6. Infrastructure & Hosting
