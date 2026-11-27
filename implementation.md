@@ -92,3 +92,27 @@ Create `.github/workflows/update-resume.yml`, triggered `on: repository_dispatch
 2.  **Test the Submodule Logic:** Push a monorepo structure with a `.gitmodules` file and ensure the workflow's submodule step accurately identifies the full stack before calling the AI.
 3.  **Test the Manual Flow:** Submit a test entry via the GitHub Issue Form and verify the `update-work-experience.yml` run appends it correctly to the `work` section of the generated PDF without breaking the template styling.
 4.  **Verify Permissions:** Confirm `GITHUB_TOKEN` has write access (Phase 2) and that `RESUME_CORE_PAT` / `AI_API_KEY` secrets are scoped correctly — a common failure point when moving off a self-hosted orchestrator.
+
+---
+
+## Phase 6: JobMail Tailored-CV Integration
+
+1. **Configure the server bridge:** Set the same high-entropy
+   `JOBMAIL_INTEGRATION_SECRET` in JobMail and `resume-admin`. Set
+   `JOBMAIL_GITHUB_TOKEN` only in `resume-admin`, using a fine-grained token
+   with the minimum Actions dispatch and artifact-download permissions. Keep
+   `ALLOWED_GITHUB_USERNAME` aligned with the connected DevResume account.
+2. **Configure the renderer:** Ensure `resume-core` has `RESUME_DATA_PAT` and
+   the existing PDF-rendering dependencies/secrets. The
+   `generate-jobmail-resume.yml` workflow must remain `workflow_dispatch` only,
+   use `contents: read`, and retain artifacts for one day.
+3. **Exercise the user flow:** Connect DevResume in JobMail, fill Company Name
+   and Position, click **Generate DevResume CV**, observe live progress, and
+   confirm the PDF is attached before sending.
+4. **Verify isolation:** Compare the canonical `resume-data` and Drive PDF
+   before and after a request; neither may contain the target role/company
+   overlay. Confirm the normal email history and scheduling paths still accept
+   the generated attachment.
+5. **Run negative tests:** invalid shared secret, wrong account ID, malformed
+   request ID, missing role, failed workflow, expired artifact, non-PDF output,
+   and an artifact larger than 5 MB must fail safely without leaking secrets.

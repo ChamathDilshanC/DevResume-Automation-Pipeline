@@ -45,6 +45,24 @@ The Automated Resume Pipeline is an event-driven architecture designed to mainta
 2. **Trigger:** Submitting the form opens a labeled (`work-experience`) issue in `resume-core`, which fires the `issues: opened` event.
 3. **Process:** The workflow parses the issue body, formats the input via the AI step, updates the `work` array in `resume.json`, then runs the exact same PDF generation and Drive upload steps as Flow A, and closes the issue.
 
+### Flow C: JobMail Tailored Resume
+1. **Input:** A connected JobMail user fills `Company Name` and `Position` in
+   the Send Email form and optionally provides the job description.
+2. **Start:** JobMail authenticates the Google bearer token, verifies the
+   one-to-one DevResume link, and sends the bounded context to the protected
+   `resume-admin` bridge.
+3. **Dispatch:** `resume-admin` validates the shared secret and account
+   boundary, then dispatches `resume-core/.github/workflows/generate-jobmail-resume.yml`.
+4. **Render:** The runner checks out a read-only copy of `resume-data` and
+   applies the role/company/job-description overlay in memory before Puppeteer
+   renders the PDF.
+5. **Return:** The runner uploads a one-day artifact. `resume-admin` polls the
+   matching request, validates the PDF and size, and JobMail attaches it to the
+   current email while its live progress slider updates.
+
+This flow is intentionally isolated from Flow A and Flow B: no canonical
+`resume.json`, Drive PDF, or notification delivery is modified.
+
 ---
 
 ## 4. Submodule Handling Architecture

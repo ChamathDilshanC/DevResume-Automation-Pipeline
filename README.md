@@ -133,6 +133,7 @@ Edits are committed automatically a couple of seconds after the last change, **S
 - [`architecture.md`](architecture.md) — system architecture and data flow
 - [`implementation.md`](implementation.md) — phase-by-phase build guide
 - [`technologies-used.md`](technologies-used.md) — technology stack rationale
+- [`docs/jobmail-tailored-cv.md`](docs/jobmail-tailored-cv.md) — end-to-end tailored CV bridge and security boundaries
 - [`References/`](References/) — design/CSS guidelines, git workflow rules,
   AI prompt specs, and the sample resume data used to bootstrap `resume-core`
 
@@ -141,7 +142,8 @@ Edits are committed automatically a couple of seconds after the last change, **S
 DevResume can be connected to [JobMail](https://github.com/ChamathDilshanC/Job_Email_Generator---Sender-Gmail-Outlook)
 for job-application workflows. JobMail verifies a short-lived code generated
 by this application, stores only the account relationship, and can retrieve
-the latest resume PDF for an email attachment.
+the latest resume PDF or request a one-off CV tailored to the current role and
+company for an email attachment.
 
 ```mermaid
 flowchart LR
@@ -149,6 +151,10 @@ flowchart LR
     B -->|server-to-server verification| C[(Integration link)]
     C --> D[Latest resume PDF]
     D --> E[Gmail application attachment]
+    B -->|role + company + job context| F[DevResume Admin bridge]
+    F -->|workflow_dispatch| G[Isolated resume-core render]
+    G -->|one-day PDF artifact| F
+    F --> H[Tailored PDF attachment]
     B -->|Disconnect| C
     C -.->|link deleted; resume data retained| A
 ```
@@ -164,6 +170,7 @@ resume content intact.
 | Resume generation pipeline | ✅ | Versioned PDF |
 | ATS-oriented content | ✅ | Structured resume data |
 | JobMail attachment sync | ✅ | Latest PDF available to send |
+| JobMail tailored CV | ✅ | Isolated, short-lived role/company PDF |
 | Manual disconnect | ✅ | Immediate link revocation |
 
 <p align="center">
